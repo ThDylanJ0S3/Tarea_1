@@ -3,6 +3,7 @@ package Controlador;
 
 
 import Modelo.Persona;
+import Modelo.AlertW;
 import javafx.geometry.Insets;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -26,19 +27,12 @@ public class Main extends Application{
     
     }
     
+    //Variables locales
     private int cont = 0;
-    private int edadPer1 = 0;
-    private int edadPer2 = 0;
-    private int edadPer3 = 0;
-    private int edadPer4 = 0;
-    private double result = 0;
+    private int result = 0;
     private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private final ChoiceBox<Persona> choiceBox1 = new ChoiceBox<>();
     private final ChoiceBox<Persona> choiceBox2 = new ChoiceBox<>();
-    private final Persona per1 = new Persona();
-    private final Persona per2 = new Persona();
-    private final Persona per3 = new Persona();
-    private final Persona per4 = new Persona();
 
     
     
@@ -59,8 +53,6 @@ public class Main extends Application{
         GridPane.setColumnSpan(resultInput, 3);
         resultInput.setPrefWidth(200);
         resultInput.setPrefHeight(10);
-        
-        
         
         //Nombre
         Label nameLabel = new Label("Nombre:");
@@ -89,63 +81,27 @@ public class Main extends Application{
         choiceBox.setValue("San José");
         choiceBox.getItems().addAll("San José","Alajuela","Cartago","Heredia","Guanacaste","Puntarenas","Limón");
         GridPane.setConstraints(choiceBox, 1, 3);
-        
-        
-        
+      
         // Boton Agregar
         Button boton = new Button();
         boton.setText("Agregar");
         boton.setOnAction((e) -> {
-            cont ++;
-            
+            //Ciclo while que limita la creacionde personas
             while(cont<=4){
-                if(cont == 1){
-                    per1.setNombre(nameInput.getText());
-                    per1.setProvincia(choiceBox.getValue());
-                    int ageImput = Integer.parseInt(ageInput.getText());
-                    edadPer1 = ageImput;
-                    per1.setEdad(ageImput);
-                    choiceBox1.getItems().add(per1);
-                    choiceBox2.getItems().add(per1);
-                    break;
-                }
-                if(cont == 2){
-                    per2.setNombre(nameInput.getText());
-                    per2.setProvincia(choiceBox.getValue());
-                    int ageImput = Integer.parseInt(ageInput.getText());
-                    per2.setEdad(ageImput);
-                    edadPer2 = ageImput;
-                    choiceBox1.getItems().add(per2);
-                    choiceBox2.getItems().add(per2);
-                    break;
-                }
-                if(cont == 3){
-                    per3.setNombre(nameInput.getText());
-                    per3.setProvincia(choiceBox.getValue());
-                    int ageImput = Integer.parseInt(ageInput.getText());
-                    per3.setEdad(ageImput);
-                    edadPer3 = ageImput;
-                    choiceBox1.getItems().add(per3);
-                    choiceBox2.getItems().add(per3);
-                    break;
-                }
-                if(cont == 4){
-                    per4.setNombre(nameInput.getText());
-                    per4.setProvincia(choiceBox.getValue());
-                    
-                    int ageImput = Integer.parseInt(ageInput.getText());
-                    per4.setEdad(ageImput);
-                    edadPer4 = ageImput;
-                    choiceBox1.getItems().add(per4);
-                    choiceBox2.getItems().add(per4);
-                    break;
-                }
-                
-                
-            }
-            
-            
-                    
+            int edadPer = Integer.parseInt(ageInput.getText());
+                if (!nameInput.getText().isBlank() && !ageInput.getText().isBlank() && edadPer>0){
+                            cont ++;
+                            Persona persona = new Persona(nameInput.getText(),choiceBox.getValue(),edadPer);
+                            choiceBox1.getItems().add(persona);
+                            choiceBox2.getItems().add(persona);
+                            break;
+                        }
+                        else{ 
+                            AlertW.display("ERROR","Debe ingresar los datos solicitados y la edad debe ser distinta a 0");
+                            break;}    
+                    }
+            if (cont>4) AlertW.display("ERROR","No puede añadir más personas");
+
         });
         
         // Boton suma
@@ -164,7 +120,6 @@ public class Main extends Application{
             result = 0;
             result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() - choiceBox2.getSelectionModel().getSelectedItem().getEdad();
             resultInput.setText("Resultado: " + result);
-            
         });
                 
         // Boton dividir
@@ -182,11 +137,10 @@ public class Main extends Application{
         botonMult.setOnAction((a) -> {
             result = 0;
             result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() * choiceBox2.getSelectionModel().getSelectedItem().getEdad();
-            resultInput.setText("Resultado: " + result);
-            
+            resultInput.setText("Resultado: " + result);         
         });
         
-        
+        //Divide la interfaz en filas y columnas, y le da un ancho y un largo a cada boton y Choice Box
         GridPane.setConstraints(boton, 1, 6); 
         GridPane.setConstraints(botonSum, 4, 5);
         GridPane.setConstraints(botonRes, 4, 6);       
@@ -211,9 +165,7 @@ public class Main extends Application{
         choiceBox2.setPrefWidth(200);
         choiceBox2.setPrefHeight(10);
         
-        
-
-        
+        //Muestra todos los objetos en la interfaz
         grid.getChildren().addAll(botonSum,botonRes,botonDiv,botonMult, resultInput, nameLabel,nameInput,provLabel,boton, ageLabel, ageInput, choiceBox,choiceBox1,choiceBox2);
         Scene scene = new Scene(grid, 800, 250);
         ventana.setScene(scene);
