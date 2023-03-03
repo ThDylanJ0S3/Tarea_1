@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="boton" layoutX="126.0" layoutY="327.0" mnemonicParsing="false" text="Agregar" />
+      <Button fx:id="botonRes" layoutX="378.0" layoutY="340.0" mnemonicParsing="false" text="Resta" />
+      <Button fx:id="botonMult" layoutX="430.0" layoutY="340.0" mnemonicParsing="false" text="Multiplicacion" />
+      <Button fx:id="botonDiv" layoutX="534.0" layoutY="340.0" mnemonicParsing="false" text="Division" />
+      <Button fx:id="botonSum" layoutX="323.0" layoutY="340.0" mnemonicParsing="false" text="Suma" />
+      <ChoiceBox fx:id="choiceBox" layoutX="79.0" layoutY="214.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choiceBox1" layoutX="384.0" layoutY="175.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choiceBox2" layoutX="384.0" layoutY="247.0" prefWidth="150.0" />
+      <TextField fx:id="nameInput" layoutX="81.0" layoutY="162.0" />
+      <Label fx:id="persona1Label" layoutX="384.0" layoutY="140.0" text="Persona 1" />
+      <Label fx:id="persona2Label" layoutX="384.0" layoutY="218.0" text="Persona 2" />
+      <Label fx:id="nameLabel" layoutX="24.0" layoutY="166.0" text="Nombre:" />
+      <Label fx:id="addLabel" layoutX="91.0" layoutY="123.0" text="Agregar Persona" />
+      <Label fx:id="ageLabel" layoutX="33.0" layoutY="264.0" text="Edad: " />
+      <Label fx:id="provLabel" layoutX="24.0" layoutY="218.0" text="Provincia:" />
+      <TextField fx:id="ageInput" layoutX="80.0" layoutY="260.0" />
+      <TextArea fx:id="resultInput" layoutX="135.0" layoutY="21.0" prefHeight="71.0" prefWidth="330.0" />
+   </children>
+</AnchorPane>
