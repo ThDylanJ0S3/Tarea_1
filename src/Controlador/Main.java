@@ -19,6 +19,10 @@ import javafx.stage.Stage;
  *
  * @author Dylan Meza
  */
+
+/**
+*El metodo main inicia la aplicación JavaFX
+*/
 public class Main extends Application{
    Stage ventana;
    
@@ -26,15 +30,18 @@ public class Main extends Application{
         launch(args);
     
     }
-    
-    //Variables locales
+   
+    //Variables
     private int cont = 0;
     private int result = 0;
     private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private final ChoiceBox<Persona> choiceBox1 = new ChoiceBox<>();
     private final ChoiceBox<Persona> choiceBox2 = new ChoiceBox<>();
 
-    
+    /**
+    *El metodo start se encarga configura y muestra la ventana principal de la aplicación
+    * @param primaryStage representa la ventana principal de la aplicación.
+    */
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -86,10 +93,11 @@ public class Main extends Application{
         Button boton = new Button();
         boton.setText("Agregar");
         boton.setOnAction((e) -> {
-            //Ciclo while que limita la creacionde personas
-            while(cont<=4){
+            
+            //Ciclo while limita la cantidad de personas que pueden ser ingresadas 
+            while(cont<=3){
             int edadPer = Integer.parseInt(ageInput.getText());
-                if (!nameInput.getText().isBlank() && !ageInput.getText().isBlank() && edadPer>0){
+                if (!nameInput.getText().isBlank() && !ageInput.getText().isBlank()){
                             cont ++;
                             Persona persona = new Persona(nameInput.getText(),choiceBox.getValue(),edadPer);
                             choiceBox1.getItems().add(persona);
@@ -100,7 +108,7 @@ public class Main extends Application{
                             AlertW.display("ERROR","Debe ingresar los datos solicitados y la edad debe ser distinta a 0");
                             break;}    
                     }
-            if (cont>4) AlertW.display("ERROR","No puede añadir más personas");
+            if (cont>=4) AlertW.display("ERROR","No puede añadir más personas");
 
         });
         
