@@ -33,7 +33,7 @@ public class Main extends Application{
    
     //Variables
     private int cont = 0;
-    private int result = 0;
+    private float result = 0;
     private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private final ChoiceBox<Persona> choiceBox1 = new ChoiceBox<>();
     private final ChoiceBox<Persona> choiceBox2 = new ChoiceBox<>();
@@ -117,7 +117,7 @@ public class Main extends Application{
         botonSum.setText("Suma");
         botonSum.setOnAction((e) -> {
             result = 0;
-            result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() + choiceBox2.getSelectionModel().getSelectedItem().getEdad();
+            int result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() + choiceBox2.getSelectionModel().getSelectedItem().getEdad();
             resultInput.setText("Resultado: " + result);    
         });
         
@@ -126,7 +126,7 @@ public class Main extends Application{
         botonRes.setText("Resta");
         botonRes.setOnAction((e) -> {
             result = 0;
-            result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() - choiceBox2.getSelectionModel().getSelectedItem().getEdad();
+            int result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() - choiceBox2.getSelectionModel().getSelectedItem().getEdad();
             resultInput.setText("Resultado: " + result);
         });
                 
@@ -135,7 +135,9 @@ public class Main extends Application{
         botonDiv.setText("Division");
         botonDiv.setOnAction((c) -> {
             result = 0;
-            result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() / choiceBox2.getSelectionModel().getSelectedItem().getEdad();
+            float num1 = choiceBox1.getSelectionModel().getSelectedItem().getEdad();
+            float num2 = choiceBox2.getSelectionModel().getSelectedItem().getEdad();
+            result = num1/num2;
             resultInput.setText("Resultado: " + result);
         });
         
@@ -144,7 +146,7 @@ public class Main extends Application{
         botonMult.setText("Multiplicacion");
         botonMult.setOnAction((a) -> {
             result = 0;
-            result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() * choiceBox2.getSelectionModel().getSelectedItem().getEdad();
+            int result = choiceBox1.getSelectionModel().getSelectedItem().getEdad() * choiceBox2.getSelectionModel().getSelectedItem().getEdad();
             resultInput.setText("Resultado: " + result);         
         });
         
